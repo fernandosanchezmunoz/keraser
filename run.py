@@ -1,5 +1,12 @@
 #!venv/bin/python
 
+# Start the server:
+# 	python run_keras_server.py
+# Start the server with docker:
+#   docker run -p 5000:5000 fernandosanchez/keraser
+# Submit a request via cURL:
+# 	curl -X POST -F image=@dog.jpg 'http://localhost:5000/predict'
+
 import logging, sys
 
 from keraser import model, app
