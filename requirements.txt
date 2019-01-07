@@ -1,0 +1,10 @@
+flask
+flask-script
+flask-bootstrap
+flask-moment
+flask-WTF
+
+netifaces
+
+keras
+tensorflow

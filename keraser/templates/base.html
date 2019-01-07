@@ -1,0 +1,32 @@
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+{{super()}}
+<link rel="icon" href="{{ url_for('static', filename = 'favicon.ico') }}">
+{% endblock %}
+
+{% block title %}Keraser server{% endblock %}
+
+{% block content %}
+	{% with errors = get_flashed_messages(category_filter=["error"]) %}
+	{% if errors %}
+		<ul>
+			{%- for msg in errors %}
+				<li class=error style="color: red;"><strong>Error:</strong> {{ msg }}
+			{% endfor -%}
+		</ul>
+	</div>
+	{% endif %}
+	{% endwith %}
+	{% with messages = get_flashed_messages(category_filter=["message"]) %}
+	{% if messages %}
+			<ul>
+				{% for message in messages %}
+					<li class="{{ category }}">{{ message }}</li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	{% endwith %}
+
+{% block page_content %}{% endblock %}
+{% endblock %}

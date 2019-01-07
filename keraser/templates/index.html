@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+	{{ super() }}
+	{{ moment.include_moment() }}
+{% endblock %}
+
+{% block page_content %}
+<div class="container">
+	<div class="page-header">
+    	{% if (hostname and ip) %}
+        	Keraser running on {{ hostname }} and listening on {{ ip }}
+    	{% else %}
+        	Keraser (anonymous)
+		{% endif %}
+	</div>
+
+    <form method="post" enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        {{ form.file }}
+        <input type="submit">
+    </form>
+
+<p>The local date and time is {{ moment(current_time).format('LLL') }}.</p> 
+<p>That was {{ moment(current_time).fromNow(refresh=True) }}</p>
+{% endblock %}
