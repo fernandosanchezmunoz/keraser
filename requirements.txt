@@ -4,7 +4,10 @@ flask-bootstrap
 flask-moment
 flask-WTF
 
-netifaces
+pillow
+
+cython
+numpy
 
 keras
-tensorflow
+#tensorflow

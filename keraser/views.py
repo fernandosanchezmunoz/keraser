@@ -18,7 +18,6 @@ request, make_response, redirect,render_template, url_for,flash, jsonify, g
 from keraser import app
 from keraser.forms import UploadForm 
 import keraser.img as img
-import keraser.net as net
 import keraser.model as model #import the global variable inside the module, not the module
 
 FILENAME = "uploads/uploaded_file"
@@ -46,9 +45,6 @@ def index():
         return redirect(url_for('predict'), code=307) #307=preserve method POST
 	#GET
     return render_template('index.html',
-							hostname=gethostname(),
-							#ip='127.0.0.1',   #required if/when not running on linux
-							ip=net.get_default_iface_name_linux(),
 							current_time=datetime.utcnow(),
 							form=form
 							)

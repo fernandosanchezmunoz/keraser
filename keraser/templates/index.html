@@ -8,11 +8,7 @@
 {% block page_content %}
 <div class="container">
 	<div class="page-header">
-    	{% if (hostname and ip) %}
-        	Keraser running on {{ hostname }} and listening on {{ ip }}
-    	{% else %}
-        	Keraser (anonymous)
-		{% endif %}
+       	Keraser - Run a file through your Keras model and get something back.
 	</div>
 
     <form method="post" enctype="multipart/form-data">
