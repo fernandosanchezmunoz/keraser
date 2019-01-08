@@ -1,7 +1,7 @@
 #!venv/bin/python
 
 # Start the server:
-# 	python run_keras_server.py
+# 	python run.py
 # Start the server with docker:
 #   docker run -p 5000:5000 fernandosanchez/keraser
 # Submit a request via cURL:
@@ -9,7 +9,7 @@
 
 import logging, sys
 
-from keraser import model, app
+import keraser
 from config import Config
 
 #init logger
@@ -28,14 +28,17 @@ logger.debug('logging initialized')
 # first load the model and
 # then start the server
 if __name__ == '__main__':
-	logger.debug('About to run')
+    logger.debug('About to run')
+    #initialize WSGI logger if this is the main thread
+    gunicorn_logger=logging.getLogger('gunicorn.error')
+    keraser.app.logger.handlers = gunicorn_logger.handlers
+    keraser.app.logger.setLevel(gunicorn_logger.level)
     #Initialization code
-	logger.info('Loading Keras model and starting Flask server...')
-	logger.info('Please wait until server has fully started')
-	model.load_model()
+    logger.info('Loading Keras model and starting Flask server...')
+    logger.info('Please wait until server has fully started')
     #run App
-	logger.debug( "Running with options: {}".format(Config.APP_RUN_OPTS) )
-	app.run(**Config.APP_RUN_OPTS)
-	#Tensorflow has trouble unless options are:
-	#app.run(debug = False, threaded = False, host='0.0.0.0', port=5000)
+    logger.debug( "Running with options: {}".format(Config.APP_RUN_OPTS) )
+    keraser.app.run(**Config.APP_RUN_OPTS)
+    #Tensorflow has trouble unless options are:
+    #app.run(debug = False, threaded = False, host='0.0.0.0', port=5000)
 
