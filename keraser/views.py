@@ -55,16 +55,13 @@ def predict():
 
 	# ensure an image was properly uploaded to our endpoint
 	if request.method == "POST":
-		logger.debug('POST received in /predict')
 		
 		if os.path.isfile(FILENAME):
 			#this is coming from the UI which saved a file
-			logger.debug('IMAGE posted through UI and found in '+FILENAME)
 			image = Image.open(FILENAME)
 
 		if request.files.get("image"):
 			#there is an image in the request, it's an API request
-			logger.debug('IMAGE posted to /predict')
 			# read the image in PIL format
 			image = request.files["image"].read()
 			image = Image.open(io.BytesIO(image))
@@ -74,7 +71,6 @@ def predict():
 			image = img.prepare_image(image, target=(224, 224))
 			# classify the input image and then initialize the list
 			# of predictions to return to the client
-			logger.debug('calling model')
 			preds = model.model.predict(image) #the model object in the "model" module
 			results = img.decode_predictions(preds)
 			data["predictions"] = []
