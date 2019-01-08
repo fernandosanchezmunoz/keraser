@@ -8,12 +8,12 @@ from config import Config
 import logging
 logger = logging.getLogger(Config.APP_NAME)
 
-import os, io
+import os, io, json
 from datetime import datetime
 from socket import gethostname
 from PIL import Image
 from flask import \
-request, make_response, redirect,render_template, url_for,flash, jsonify, g
+request,redirect,render_template, url_for, flash, jsonify, g
 
 from keraser import app
 from keraser.forms import UploadForm 
@@ -29,22 +29,22 @@ FILENAME = "uploads/uploaded_file"
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-    '''
-    Homepage 
-    '''
-    form = UploadForm()
+	'''
+	Homepage 
+	'''
+	form = UploadForm()
 
 	#POST
-    if form.validate_on_submit():
-        #filename = secure_filename(form.file.data.filename)
-        form.file.data.save(FILENAME) #'uploads/' + filename)
+	if form.validate_on_submit():
+		#filename = secure_filename(form.file.data.filename)
+		form.file.data.save(FILENAME) #'uploads/' + filename)
 
-        #TODO: need to call "PREDICT" here with the uploaded file
+		#TODO: need to call "PREDICT" here with the uploaded file
 		#redirect(url_for('.do_foo', messages=messages))
 		  #, image=form.file)
-        return redirect(url_for('predict'), code=307) #307=preserve method POST
+		return redirect(url_for('predict'), code=307) #307=preserve method POST
 	#GET
-    return render_template('index.html',
+	return render_template('index.html',
 							current_time=datetime.utcnow(),
 							form=form
 							)
@@ -104,6 +104,7 @@ def predict():
 
 		else:
 			flash('No File received','error')
+			logger.error('No file received')
 
-	# return the data dictionary as a JSON response
-	return jsonify(data)
+		# return the data dictionary as a JSON response
+		return jsonify(data)

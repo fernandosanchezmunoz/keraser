@@ -11,5 +11,7 @@ app = Flask(__name__)
 app.config.from_object(Config)
 app.env = Config.ENV
 
-from keraser import views
+from keraser import views, model
+
+model.load_model()
 

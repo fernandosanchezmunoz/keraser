@@ -5,6 +5,6 @@ flask-WTF
 pillow
 
 keras
-#tensorflow
+tensorflow
 
 gunicorn
