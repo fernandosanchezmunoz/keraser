@@ -40,10 +40,7 @@ def index():
 		form.file.data.save(FILENAME) #'uploads/' + filename)
 		return redirect(url_for('predict'), code=307) #307=preserve method POST
 	#GET
-	return render_template('index.html',
-							current_time=datetime.utcnow(),
-							form=form
-							)
+	return render_template('index.html', form=form)
 
 #####################
 #  Predict          #
