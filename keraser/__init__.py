@@ -9,6 +9,7 @@ from config import Config
 #init handlers and flask app
 app = Flask(__name__)
 app.config.from_object(Config)
+app.env = Config.ENV
 
 from keraser import views
 

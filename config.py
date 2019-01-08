@@ -12,6 +12,7 @@ class Config (object):
     PORT = 5000
     DEBUG_MODE = False
     THREADED_MODE = False
+    ENV = 'development' #change to 'production'
     APP_RUN_OPTS = {
         'host':     '0.0.0.0',
         'threaded': THREADED_MODE,
