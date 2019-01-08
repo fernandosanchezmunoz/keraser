@@ -11,3 +11,5 @@ numpy
 
 keras
 #tensorflow
+
+gunicorn
