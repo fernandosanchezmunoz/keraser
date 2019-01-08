@@ -38,10 +38,6 @@ def index():
 	if form.validate_on_submit():
 		#filename = secure_filename(form.file.data.filename)
 		form.file.data.save(FILENAME) #'uploads/' + filename)
-
-		#TODO: need to call "PREDICT" here with the uploaded file
-		#redirect(url_for('.do_foo', messages=messages))
-		  #, image=form.file)
 		return redirect(url_for('predict'), code=307) #307=preserve method POST
 	#GET
 	return render_template('index.html',
