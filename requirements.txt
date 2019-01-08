@@ -1,13 +1,8 @@
 flask
 flask-script
-flask-bootstrap
-flask-moment
 flask-WTF
 
 pillow
-
-cython
-numpy
 
 keras
 #tensorflow
