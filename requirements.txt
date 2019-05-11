@@ -4,4 +4,7 @@ flask-WTF
 
 pillow
 
+keras
+tensorflow
+
 gunicorn

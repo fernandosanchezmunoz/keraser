@@ -11,7 +11,7 @@ class Config (object):
 	#app.run(debug = False, threaded = False)
     PORT = 5000
     DEBUG_MODE = False
-    THREADED_MODE = True
+    THREADED_MODE = False
     ENV = 'development' #change to 'production'
     APP_RUN_OPTS = {
         'host':     '0.0.0.0',
@@ -21,7 +21,7 @@ class Config (object):
     }
 
     #logging options
-    APP_NAME = 'glitnir'
+    APP_NAME = 'keraser'
     LOGGING_FORMAT = '%(asctime)-15s %(message)s' #'%(asctime)-15s %(clientip)s %(user)-8s %(message)s'
     if DEBUG_MODE:
         LOGGING_LEVEL = logging.DEBUG 
