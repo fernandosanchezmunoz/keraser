@@ -9,7 +9,7 @@
 
 import logging, sys
 
-import keraser
+import glitnir
 from config import Config
 
 #init logger
@@ -34,11 +34,11 @@ if __name__ == '__main__':
     keraser.app.logger.handlers = gunicorn_logger.handlers
     keraser.app.logger.setLevel(gunicorn_logger.level)
     #Initialization code
-    logger.info('Loading Keras model and starting Flask server...')
+    logger.info('Starting Flask server...')
     logger.info('Please wait until server has fully started')
     #run App
     logger.debug( "Running with options: {}".format(Config.APP_RUN_OPTS) )
-    keraser.app.run(**Config.APP_RUN_OPTS)
+    glitnir.app.run(**Config.APP_RUN_OPTS)
     #Tensorflow has trouble unless options are:
     #app.run(debug = False, threaded = False, host='0.0.0.0', port=5000)
 
