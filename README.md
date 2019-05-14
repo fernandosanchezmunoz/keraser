@@ -1,10 +1,14 @@
-# Glitnir
+# Keraser
 
-A UI for Forseti (www.forsetisecurity.org)
-Displays the resources discovered by the Forseti Inventory server using the "GCP Architecture Visualizer" from [this repo](https://github.com/GoogleCloudPlatform/professional-services/tree/master/tools/gcp-arch-viz).
+Serves a Keras model through REST and UI. 
 
-Resources are uploaded from file using the UI, or a Google Cloud Storage. 
+This version serves a model trained on ImageNet and will return labels for a picture. The picture can be:
+- Sent through a REST API call as "image"
+
+`curl -F image=@keraser/static/dog.jpg localhost:5000/predict`
+
+- Uploaded through the GUI, accessing the server's IP address with a web browser
 
 ## Usage 
 
-`docker run -p 5000:5000 fernandosanchez/glitnir`
+`docker run -p 5000:5000 fernandosanchez/keraser`
